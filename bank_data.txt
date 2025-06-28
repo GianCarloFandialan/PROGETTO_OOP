@@ -1,4 +1,0 @@
-Conto Risparmio,STANDARD001,Cliente Standard,5000.0
-Conto Risparmio,DEMO002,Demo User 2,2000.0
-Conto Corrente,DEMO001,Demo User 1,1050.0
-Conto Risparmio,PREMIUM001,Cliente VIP,5000.0
