@@ -289,50 +289,33 @@ classDiagram
     class OutputDevice {
         <<interface>>
         +writeLine(String text) void
-        +initialize() void
-        +cleanup() void
-        +isReady() boolean
+        +close() void
     }
 
     class ConsoleOutputDevice {
-        -isInitialized : boolean
-        -lineCounter : int
-        +initialize() void
+        +close() void
         +writeLine(String text) void
-        +cleanup() void
-        +isReady() boolean
     }
 
     class FileOutputDevice {
         -filename : String
         -writer : PrintWriter
-        -isInitialized : boolean
-        -totalLines : int
-        -sessionStart : LocalDateTime
         +FileOutputDevice(String filename)
-        +initialize() void
         +writeLine(String text) void
-        +cleanup() void
-        +isReady() boolean
-        -calculateSessionDuration() String
+        +close() void
     }
 
     class AccountDisplay {
-        #outputDevice : OutputDevice
-        +AccountDisplay(OutputDevice outputDevice)
+        outputDevice : OutputDevice
         +showAccount(Account account) void
         +changeOutputDevice(OutputDevice newDevice) void
         +finish() void
-        -analyzeBalance(double balance) void
     }
 
     class DetailedAccountDisplay {
         +DetailedAccountDisplay(OutputDevice outputDevice)
         +showAccount(Account account) void
-        +showExecutiveSummary(Account account) void
-        -addAccountSpecificDetails(Account account) void
-        -assessRiskLevel(Account account) void
-        -generateRecommendations(Account account) void
+        +showSummary(Account account) void
     }
 
     OutputDevice <|.. ConsoleOutputDevice
