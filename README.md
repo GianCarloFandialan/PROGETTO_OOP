@@ -208,42 +208,11 @@ classDiagram
 - Metodo `reset()` per riutilizzo dello stesso builder
 - Gestione di configurazioni premium attraverso il metodo `asPremium()`
 
-#### 4. Singleton Pattern - Istanza Unica Globale
-
-Il Singleton Pattern assicura che una classe abbia una sola istanza e fornisce un punto di accesso globale ad essa.
-
-**Implementazione:** `BankConfiguration`
-
-**Problema Risolto:** Come garantire che le configurazioni globali del sistema (nome sistema, versione, modalità debug) siano consistenti in tutto l'applicativo.
-
-```mermaid
-classDiagram
-    class BankConfiguration {
-        -instance : BankConfiguration
-        -systemName : String
-        -version : String
-        -debugMode : boolean
-        -BankConfiguration()
-        +getInstance() BankConfiguration
-        +getSystemName() String
-        +getVersion() String
-        +isDebugMode() boolean
-        +setDebugMode(boolean debugMode) void
-        +getSystemInfo() String
-    }
-
-    BankConfiguration : +getInstance() returns same instance
-
-    style BankConfiguration fill:#ff9800,stroke:#e65100,stroke-width:2px
-```
-
-**Implementazione Thread-Safe:** Il metodo `getInstance()` è sincronizzato per prevenire race conditions in ambienti multi-threaded.
-
 ### Pattern Strutturali (Structural Patterns)
 
 I pattern strutturali si occupano della composizione di classi e oggetti per formare strutture più grandi, mantenendo la flessibilità e l'efficienza.
 
-#### 5. Composite Pattern - Strutture Gerarchiche Uniforme
+#### 4. Composite Pattern - Strutture Gerarchiche Uniforme
 
 Il Composite Pattern permette di comporre oggetti in strutture ad albero per rappresentare gerarchie parte-tutto. Permette ai client di trattare uniformemente oggetti singoli e composizioni di oggetti.
 
@@ -276,7 +245,7 @@ classDiagram
 
 **Algoritmi Ricorsivi:** Le operazioni `getTotalBalance()` e `getTotalAccountCount()` utilizzano ricorsione per navigare l'intera gerarchia, dimostrando l'eleganza del pattern Composite.
 
-#### 6. Bridge Pattern - Separazione Astrazione/Implementazione
+#### 5. Bridge Pattern - Separazione Astrazione/Implementazione
 
 Il Bridge Pattern separa un'astrazione dalla sua implementazione in modo che entrambe possano variare indipendentemente.
 
@@ -335,6 +304,37 @@ classDiagram
 ### Pattern Comportamentali (Behavioral Patterns)
 
 I pattern comportamentali si concentrano sulla comunicazione tra oggetti e sull'assegnazione di responsabilità tra di essi.
+
+#### 6. Singleton Pattern - Istanza Unica Globale
+
+Il Singleton Pattern assicura che una classe abbia una sola istanza e fornisce un punto di accesso globale ad essa.
+
+**Implementazione:** `BankConfiguration`
+
+**Problema Risolto:** Come garantire che le configurazioni globali del sistema (nome sistema, versione, modalità debug) siano consistenti in tutto l'applicativo.
+
+```mermaid
+classDiagram
+    class BankConfiguration {
+        -instance : BankConfiguration
+        -systemName : String
+        -version : String
+        -debugMode : boolean
+        -BankConfiguration()
+        +getInstance() BankConfiguration
+        +getSystemName() String
+        +getVersion() String
+        +isDebugMode() boolean
+        +setDebugMode(boolean debugMode) void
+        +getSystemInfo() String
+    }
+
+    BankConfiguration : +getInstance() returns same instance
+
+    style BankConfiguration fill:#ff9800,stroke:#e65100,stroke-width:2px
+```
+
+**Implementazione Thread-Safe:** Il metodo `getInstance()` è sincronizzato per prevenire race conditions in ambienti multi-threaded.
 
 #### 7. Strategy Pattern - Algoritmi Intercambiabili
 
@@ -528,8 +528,6 @@ classDiagram
 ```
 
 **Principio di Incapsulamento:** Il `AccountSnapshot` è immutabile e cattura solo lo stato essenziale, mentre `AccountBackup` funge da caretaker senza accedere ai dettagli interni.
-
-### Pattern Architetturali
 
 #### 12. Exception Shielding Pattern - Protezione delle Informazioni Sensibili
 
