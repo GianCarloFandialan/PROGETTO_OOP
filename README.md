@@ -508,7 +508,7 @@ classDiagram
     }
 
     class AccountBackup {
-        -snapshots : Map~String, AccountSnapshot~
+        -snapshots : Map~accountNumber, AccountSnapshot~
         +save(Account account) boolean
         +restore(String accountNumber) AccountSnapshot
         +hasBackup(String accountNumber) boolean
